@@ -12,6 +12,7 @@ var app = module.exports = koa();
 app.use(logger());
 
 app.use(route.get('/', steambacklog.home));
+app.use(route.get('/summary/:id', steambacklog.summary));
 app.use(route.options('/', steambacklog.options));
 app.use(route.trace('/', steambacklog.trace));
 app.use(route.head('/', steambacklog.head));

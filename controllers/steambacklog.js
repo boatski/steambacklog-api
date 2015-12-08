@@ -9,6 +9,21 @@ module.exports.home = function * home(next) {
   this.body = "Hello world!";
 };
 
+/*
+Gets the Steam user's player summary.
+*/
+module.exports.summary = function * summary(id, next) {
+  if ('GET' != this.method) return yield next;
+
+  if (!id) {
+    this.redirect('/');
+  } else if (id.length === 0) {
+    this.throw(404, 'steam profile with id = ' + id + ' was not found');
+  }
+
+  this.body = "id = " + id;
+};
+
 module.exports.head = function *(){
   return;
 };
