@@ -1,4 +1,5 @@
 'use strict';
+var steamService = require('../services/steam');
 // var parse = require('co-body');
 // var monk = require('monk');
 // var wrap = require('co-monk');
@@ -6,6 +7,7 @@
 
 module.exports.home = function * home(next) {
   if ('GET' != this.method) return yield next;
+
   this.body = "Hello world!";
 };
 
@@ -15,13 +17,7 @@ Gets the Steam user's player summary.
 module.exports.summary = function * summary(id, next) {
   if ('GET' != this.method) return yield next;
 
-  if (!id) {
-    this.redirect('/');
-  } else if (id.length === 0) {
-    this.throw(404, 'steam profile with id = ' + id + ' was not found');
-  }
-
-  this.body = "id = " + id;
+  this.body = yield steamService.resolveVanityUrl(id);
 };
 
 module.exports.head = function *(){

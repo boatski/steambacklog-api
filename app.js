@@ -1,15 +1,18 @@
 'use strict';
 var steambacklog = require('./controllers/steambacklog');
+var koa = require('koa');
 var compress = require('koa-compress');
 var logger = require('koa-logger');
 var serve = require('koa-static');
 var route = require('koa-route');
-var koa = require('koa');
+var json = require('koa-json');
 var path = require('path');
 var app = module.exports = koa();
 
 // Logger
 app.use(logger());
+
+app.use(json({ pretty: false, param: 'pretty' }));
 
 app.use(route.get('/', steambacklog.home));
 app.use(route.get('/summary/:id', steambacklog.summary));
