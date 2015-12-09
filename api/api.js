@@ -34,10 +34,6 @@ module.exports.summary = function * summary(id, next) {
   } else {
     this.body = steamid;
   }
-
-
-
-  // this.body = yield steamService.resolveVanityUrl(id);
 };
 
 module.exports.head = function *(){
