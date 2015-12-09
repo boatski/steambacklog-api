@@ -5,49 +5,49 @@ var request = require('koa-request');
 var key = (config.steamKey) ? config.steamKey : process.env.STEAM_KEY;
 
 module.exports = {
-  getBadges: function(steam, callback) {
+  getBadges: function * (id, callback) {
     var options = {
-      url: 'https://api.steampowered.com/IPlayerService/GetBadges/v1/?key=' + key + '&format=json&steamid=' + steam.steamid
+      url: 'https://api.steampowered.com/IPlayerService/GetBadges/v1/?key=' + key + '&format=json&steamid=' + id
     };
 
     return yield execute(options);
   },
-  getOwnedGames: function(steam, callback) {
+  getOwnedGames: function * (steam, callback) {
     var options = {
       url: 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=' + key + '&steamid=' + steam.steamid + '&format=json&include_appinfo=1'
     };
 
     return yield execute(options);
   },
-  getPlayerAchievements: function(steam, callback) {
+  getPlayerAchievements: function * (steam, callback) {
     var options = {
       url: 'https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1/?key=' + key + '&format=json&steamid=' + steam.steamid + '&appid=' + steam.appid
     };
 
     return yield execute(options);
   },
-  getPlayerBans: function(steam, callback) {
+  getPlayerBans: function * (id, callback) {
     var options = {
-      url: 'https://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=' + key + '&format=json&steamids=' + steam.steamid
+      url: 'https://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=' + key + '&format=json&steamids=' + id
     };
 
     return yield execute(options);
   },
-  getPlayerSummaries: function(steam, callback) {
+  getPlayerSummaries: function * (id, callback) {
     var options = {
-      url: 'https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=' + key + '&format=json&steamids=' + steam.steamid
+      url: 'https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=' + key + '&format=json&steamids=' + id
     };
 
     return yield execute(options);
   },
-  getSteamLevel: function(steam, callback) {
+  getSteamLevel: function * (id, callback) {
     var options = {
-      url: url = 'https://api.steampowered.com/IPlayerService/GetSteamLevel/v1/?key=' + key + '&format=json&steamid=' + steam.steamid
+      url: 'https://api.steampowered.com/IPlayerService/GetSteamLevel/v1/?key=' + key + '&format=json&steamid=' + id
     };
 
     return yield execute(options);
   },
-  resolveVanityUrl: function(id, callback) {
+  resolveVanityUrl: function * (id, callback) {
     var options = {
       url: 'https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?key=' + key + '&format=json&vanityurl=' + id + '&url_type=1'
     };

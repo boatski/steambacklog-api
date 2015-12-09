@@ -24,6 +24,14 @@ describe('Routes', function() {
     });
   });
 
+  describe('GET /resolve/boatski', function() {
+    it('should resolve a steam username into a steam id', function(done) {
+      request()
+      .get('/resolve/boatski')
+      .expect(200, done);
+    })
+  });
+
   describe('GET /notfound', function() {
     it('should return 404', function(done) {
       request()
