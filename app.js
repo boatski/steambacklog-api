@@ -7,6 +7,7 @@ var serve = require('koa-static');
 var route = require('koa-route');
 var json = require('koa-json');
 var path = require('path');
+var cors = require('kcors');
 var app = module.exports = koa();
 
 // Logger
@@ -16,6 +17,7 @@ app.use(json({ pretty: false, param: 'pretty' }));
 
 app.use(route.get('/', api.home));
 
+app.use(cors());
 app.use(route.get('/resolve/:url', api.resolve));
 app.use(route.get('/summary/:id', api.summary));
 
