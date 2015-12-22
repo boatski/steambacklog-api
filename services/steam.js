@@ -10,7 +10,8 @@ module.exports = {
       url: 'https://api.steampowered.com/IPlayerService/GetBadges/v1/?key=' + key + '&format=json&steamid=' + id
     };
 
-    return yield execute(options);
+    var result = yield request(options);
+    return JSON.parse(result.body).response;
   },
   getOwnedGames: function * (steam, callback) {
     var options = {
@@ -31,14 +32,16 @@ module.exports = {
       url: 'https://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=' + key + '&format=json&steamids=' + id
     };
 
-    return yield execute(options);
+    var result = yield request(options);
+    return JSON.parse(result.body).players[0]; // we should never reach this with an invalid id
   },
   getPlayerSummaries: function * (id, callback) {
     var options = {
       url: 'https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=' + key + '&format=json&steamids=' + id
     };
 
-    return yield execute(options);
+    var result = yield request(options);
+    return JSON.parse(result.body).response.players[0]; // we should never reach this with an invalid id
   },
   getSteamLevel: function * (id, callback) {
     var options = {
@@ -52,7 +55,8 @@ module.exports = {
       url: 'https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?key=' + key + '&format=json&vanityurl=' + id + '&url_type=1'
     };
 
-    return yield execute(options);
+    var result = yield request(options);
+    return JSON.parse(result.body).response;
   }
 };
 

@@ -33,6 +33,6 @@ app.use(serve(path.join(__dirname, 'public')));
 app.use(compress());
 
 if (!module.parent) {
-  app.listen(3000);
+  app.listen(3001);
   console.log('listening on port 3000');
 }

@@ -29,8 +29,8 @@ module.exports.summary = function * summary(id, next) {
   var steamid = yield utility.getSteamId(id);
 
   // if we successfully resolve the url then get the summary
-  if (steamid.response.success === 1) {
-    this.body = yield playerSummary.getPlayerSummary(steamid.response.steamid);
+  if (steamid.success === 1) {
+    this.body = yield playerSummary.getPlayerSummary(steamid.steamid);
   } else {
     this.body = steamid;
   }
