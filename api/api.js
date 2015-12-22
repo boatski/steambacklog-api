@@ -4,12 +4,6 @@ var main = require('../controllers/main');
 var playerSummary = require('../controllers/summary');
 var utility = require('../controllers/utility');
 
-module.exports.home = function * home(next) {
-  if ('GET' != this.method) return yield next;
-
-  this.body = "Hello world!";
-};
-
 /*
 Resolves a Steam user's name into a Steam ID.
 */
