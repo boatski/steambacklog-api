@@ -18,7 +18,8 @@ module.exports = {
       url: 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=' + key + '&steamid=' + id + '&format=json&include_appinfo=1'
     };
 
-    return yield execute(options);
+    var result = yield request(options);
+    return JSON.parse(result.body).response;
   },
   getPlayerAchievements: function * (steam, callback) {
     var options = {

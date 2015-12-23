@@ -5,7 +5,7 @@ var steamService = require('../services/steam');
 module.exports = {
   getPlayerGames: function (id) {
     var summary = {
-      playerSummary: steamService.getOwnedGames(id)
+      playerGames: steamService.getOwnedGames(id)
     };
 
     return summary;
