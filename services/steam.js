@@ -13,9 +13,9 @@ module.exports = {
     var result = yield request(options);
     return JSON.parse(result.body).response;
   },
-  getOwnedGames: function * (steam, callback) {
+  getOwnedGames: function * (id, callback) {
     var options = {
-      url: 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=' + key + '&steamid=' + steam.steamid + '&format=json&include_appinfo=1'
+      url: 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=' + key + '&steamid=' + id + '&format=json&include_appinfo=1'
     };
 
     return yield execute(options);

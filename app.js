@@ -20,6 +20,7 @@ app.use(route.get('/', api.home));
 app.use(cors());
 app.use(route.get('/resolve/:url', api.resolve));
 app.use(route.get('/summary/:id', api.summary));
+app.use(route.get('/games/:id', api.games));
 
 
 app.use(route.options('/', api.options));
