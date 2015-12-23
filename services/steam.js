@@ -13,6 +13,14 @@ module.exports = {
     var result = yield request(options);
     return JSON.parse(result.body).response;
   },
+  getRecentlyPlayedGames: function * (id, callback) {
+    var options = {
+      url: 'https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1/?key=' + key + '&format=json&steamid=' + id + '&count=5'
+    };
+
+    var result = yield request(options);
+    return JSON.parse(result.body).response;
+  },
   getOwnedGames: function * (id, callback) {
     var options = {
       url: 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=' + key + '&steamid=' + id + '&format=json&include_appinfo=1'

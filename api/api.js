@@ -31,6 +31,9 @@ module.exports.summary = function * summary(id, next) {
   }
 };
 
+/*
+Gets the Steam user's owned games.
+*/
 module.exports.games = function * games(id, next) {
   if ('GET' != this.method) return yield next;
 
@@ -43,6 +46,13 @@ module.exports.games = function * games(id, next) {
   } else {
     this.body = steamid;
   }
+};
+
+module.exports.achievements = function * achievements(id, next) {
+  if ('GET' != this.method) return yield next;
+
+  // resolve the steam name to a steam id if we need to
+  var steamid = yield utility.getSteamId(id);
 };
 
 module.exports.head = function *(){

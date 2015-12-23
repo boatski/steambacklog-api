@@ -7,7 +7,8 @@ module.exports = {
     var summary = {
       playerSummary: steamService.getPlayerSummaries(id),
       playerBans: steamService.getPlayerBans(id),
-      playerBadges: steamService.getBadges(id)
+      playerBadges: steamService.getBadges(id),
+      playerRecentGames: steamService.getRecentlyPlayedGames(id)
     };
 
     return summary;
