@@ -13,6 +13,14 @@ module.exports = {
     var result = yield request(options);
     return JSON.parse(result.body).response;
   },
+  getFriendsList: function * (id, callback) {
+    var options = {
+      url: 'https://api.steampowered.com/ISteamUser/GetFriendList/v1/?key=' + key + '&format=json&steamid=' + id + '&relationship=friend'
+    };
+
+    var result = yield request(options);
+    return JSON.parse(result.body).friendslist;
+  },
   getRecentlyPlayedGames: function * (id, callback) {
     var options = {
       url: 'https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1/?key=' + key + '&format=json&steamid=' + id + '&count=5'

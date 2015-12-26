@@ -8,7 +8,8 @@ module.exports = {
       playerSummary: steamService.getPlayerSummaries(id),
       playerBans: steamService.getPlayerBans(id),
       playerBadges: steamService.getBadges(id),
-      playerRecentGames: steamService.getRecentlyPlayedGames(id)
+      playerRecentGames: steamService.getRecentlyPlayedGames(id),
+      playerFriendsList: steamService.getFriendsList(id)
     };
 
     return summary;
