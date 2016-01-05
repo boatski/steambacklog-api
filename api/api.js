@@ -25,7 +25,10 @@ module.exports.summary = function * summary(id, next) {
 
   // if we successfully resolve the url then get the summary
   if (steamid.success === 1) {
-    this.body = yield playerSummary.getPlayerSummary(steamid.steamid);
+    this.body = yield {
+      id: id,
+      summary: playerSummary.getPlayerSummary(steamid.steamid)
+    };
   } else {
     this.body = steamid;
   }
@@ -42,7 +45,10 @@ module.exports.games = function * games(id, next) {
 
   // if we successfully resolve the url then get the games
   if (steamid.success === 1) {
-    this.body = yield playerGames.getPlayerGames(steamid.steamid);
+    this.body = yield {
+      id: id,
+      games: playerGames.getPlayerGames(steamid.steamid)
+    };
   } else {
     this.body = steamid;
   }
