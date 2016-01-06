@@ -1,5 +1,8 @@
 'use strict';
 var api = require('./api/api');
+var config = require('./config/config');
+
+// koa
 var koa = require('koa');
 var compress = require('koa-compress');
 var logger = require('koa-logger');
@@ -9,6 +12,13 @@ var json = require('koa-json');
 var path = require('path');
 var cors = require('kcors');
 var app = module.exports = koa();
+
+//mongoose
+var mongoose = require('mongoose');
+mongoose.connect(config.connectionString);
+mongoose.connection.on("error", function(err) {
+  console.log('MongoDB Error: ', err);
+});
 
 // Logger
 app.use(logger());
