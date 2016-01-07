@@ -42,11 +42,7 @@ module.exports.games = function * games(id, next) {
 
   // if we successfully resolve the url then get the games
   if (steamid.success === 1) {
-    this.body = yield {
-      username: id,
-      steamid: steamid.steamid,
-      games: playerGames.getPlayerGames(steamid.steamid)
-    };
+    this.body = yield playerGames.getPlayerGames(steamid.steamid, id);
   } else {
     this.body = steamid;
   }
