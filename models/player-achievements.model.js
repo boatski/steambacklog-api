@@ -7,7 +7,7 @@ var Schema = mongoose.Schema;
 var achievementSchema = new Schema({
     username: String,
     steamid: String,
-    game: Object,
+    achievements: Object,
     created_at: Date,
     updated_at: Date
 });
