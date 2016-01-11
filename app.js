@@ -15,7 +15,8 @@ var app = module.exports = koa();
 
 //mongoose
 var mongoose = require('mongoose');
-mongoose.connect(config.connectionString);
+var key = (config.connectionString) ? config.connectionString : process.env.MONGO_KEY;
+mongoose.connect(key);
 mongoose.connection.on("error", function(err) {
   console.log('MongoDB Error: ', err);
 });
