@@ -7,6 +7,7 @@ var Schema = mongoose.Schema;
 var gamesSchema = new Schema({
   username: String,
   steamid: String,
+  appid: Number,
   games: Object,
   created_at: Date,
   updated_at: Date

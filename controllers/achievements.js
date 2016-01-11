@@ -7,7 +7,7 @@ var PlayerAchievementsModel = require('../models/player-achievements.model');
 
 module.exports.getPlayerAchievements = function*(steamid, appid, username) {
     // check the database first
-    var result = yield PlayerAchievementsModel.findOne({ steamid: steamid }).exec();
+    var result = yield PlayerAchievementsModel.findOne({ steamid: steamid, appid: appid }).exec();
 
     if (!result) {
         var gameAchievements = yield steamService.getSchemaForGame(appid);
@@ -23,6 +23,7 @@ module.exports.getPlayerAchievements = function*(steamid, appid, username) {
         result = yield PlayerAchievementsModel.create({
             username: username,
             steamid: steamid,
+            appid: appid,
             achievements: gameAchievements
         });
     }
