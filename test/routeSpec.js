@@ -8,19 +8,28 @@ function request() {
 }
 
 describe('Routes', function() {
-  describe('GET /', function() {
-    it('should return 200', function(done) {
-      request()
-        .get('/')
-        .expect(200, done);
-    });
-  });
 
   describe('GET /summary/boatski', function() {
     it('should return the value boatski', function(done) {
       request()
       .get('/summary/boatski')
       .expect(200, done);
+    });
+  });
+
+  describe('GET /games/boatski', function() {
+    it('should return the games for boatski', function(done) {
+      request()
+          .get('/summary/boatski')
+          .expect(200, done);
+    });
+  });
+
+  describe('GET /achievements/boatski/620', function() {
+    it('should return achievements for a game', function(done) {
+      request()
+          .get('/summary/boatski')
+          .expect(200, done);
     });
   });
 
