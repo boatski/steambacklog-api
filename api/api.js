@@ -1,6 +1,5 @@
 'use strict';
-var steamService = require('../services/steam');
-var main = require('../controllers/main');
+var playerAchievements = require('../controllers/achievements');
 var playerGames = require('../controllers/games');
 var playerSummary = require('../controllers/summary');
 var utility = require('../controllers/utility');
@@ -48,11 +47,21 @@ module.exports.games = function * games(id, next) {
   }
 };
 
-module.exports.achievements = function * achievements(id, next) {
+/*
+Gets the Steam user's achievement stats for a given game.
+ */
+module.exports.achievements = function * achievements(id, appid, next) {
   if ('GET' != this.method) return yield next;
 
   // resolve the steam name to a steam id if we need to
   var steamid = yield utility.getSteamId(id);
+
+    // if we successfully resolve the url then get the achievement
+    if (steamid.success === 1) {
+        this.body = yield playerAchievements.getPlayerAchievements(steamid.steamid, appid, id);
+    } else {
+        this.body = steamid;
+    }
 };
 
 module.exports.head = function *(){

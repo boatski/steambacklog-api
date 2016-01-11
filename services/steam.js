@@ -37,12 +37,13 @@ module.exports = {
     var result = yield request(options);
     return JSON.parse(result.body).response;
   },
-  getPlayerAchievements: function * (steam) {
+  getPlayerAchievements: function * (id, appid) {
     var options = {
-      url: 'https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1/?key=' + key + '&format=json&steamid=' + steam.steamid + '&appid=' + steam.appid
+      url: 'https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1/?key=' + key + '&format=json&steamid=' + id + '&appid=' + appid
     };
 
-    return yield execute(options);
+      var result = yield request(options);
+      return JSON.parse(result.body).playerstats;
   },
   getPlayerBans: function * (id) {
     var options = {
